@@ -4,7 +4,7 @@ import {auth} from '../../db/firebase';
 import {Navigate} from 'react-router-dom';
 
 
-export default function Home(){
+export default function Home({user}){
   const [isSignUpActive, setSignUpActive] = useState(false)
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -43,6 +43,9 @@ export default function Home(){
   const handleEmailChange = (event) => setEmail(event.target.value);
   const handlePasswordChange = (event) => setPassword(event.target.value);
 
+  if(user){
+    return <Navigate to='/dashboard'></Navigate>
+  }
   return (
    <section className="w-full h-screen bg-slate-900 flex items-center justify-center">
     <form className="flex flex-col gap-2 bg-slate-50 p-5 rounded shadow-md">
